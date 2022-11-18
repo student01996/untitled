@@ -119,9 +119,10 @@ class AuthService {
           ? {}
           : {
               database.set({
-                "Subscription Status": false,
-                "SubsCription EndDate": "",
-                "Subscription Type": "",
+                "Address": "",
+                "Phone No": "",
+                "Age": "",
+                "FreeTextBox":""
               }),
               deviceExits
                   ? {}
@@ -129,9 +130,10 @@ class AuthService {
                       .collection("Device Verification")
                       .doc(androidId)
                       .set({
-                      "SignUp Date": now,
-                      "Trial Period End Date": now.add(const Duration(days: 7)),
-                      "Trial Status": true,
+                         "Address": "",
+                         "Phone No": "",
+                         "Age": "",
+                         "FreeTextBox":""
                     })
             };
       isStored = true;
