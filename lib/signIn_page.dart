@@ -205,7 +205,7 @@ class _SignInPageState extends State<SignInPage> {
                                     style: bodyText2White,
                                     children: <TextSpan>[
                                       const TextSpan(
-                                        text: 'New to Bottomstreet? ',
+                                        text: 'New to World1? ',
                                       ),
                                       TextSpan(
                                           text: ' Register for free',
