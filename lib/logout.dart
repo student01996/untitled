@@ -17,7 +17,7 @@ class Logout extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 60),
-            SvgPicture.asset('Assets/icon/logout.svg',
+            SvgPicture.asset('assets/logout.svg',
                 color: almostWhite, width: 96, height: 96),
             SizedBox(height: 30, width: 1 * MediaQuery.of(context).size.width),
             Text(

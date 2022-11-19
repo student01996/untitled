@@ -55,6 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 left: 0,
                 right: 0,
                 bottom: 0,
+                top:120,
                 child: SingleChildScrollView(
                   reverse: true,
                   child: Container(
@@ -73,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     return 'Display Name is required';
                                   }
 
-                                  if (value.length < 5 || value.length > 12) {
+                                  if (value.length < 3 || value.length > 12) {
                                     return 'Display Name must be betweem 5 and 12 characters';
                                   }
 

@@ -9,6 +9,7 @@ import 'package:untitled/styles.dart';
 
 class AuthService {
   final FirebaseAuth firebaseauth = FirebaseAuth.instance;
+  final _db = FirebaseFirestore.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   //login
   loginUserWithEmailAndPassword(String email, String password) async {
@@ -106,40 +107,77 @@ class AuthService {
 
     DateTime now = DateTime.now();
     bool isStored;
-    var database = FirebaseFirestore.instance
+    var database = _db
         .collection("Users2")
         .doc(firebaseauth.currentUser?.uid);
-    var deviceDatabase = FirebaseFirestore.instance
-        .collection("Device Verification")
-        .doc(androidId);
+    // var deviceDatabase = FirebaseFirestore.instance
+    //     .collection("Device Verification")
+    //     .doc(androidId);
     bool databaseStatus = await database.get().then((value) => value.exists);
-    bool deviceExits = await deviceDatabase.get().then((value) => value.exists);
-    try {
-      databaseStatus
-          ? {}
-          : {
-              database.set({
-                "Address": "",
-                "Phone No": "",
-                "Age": "",
-                "FreeTextBox":""
-              }),
-              deviceExits
-                  ? {}
-                  : FirebaseFirestore.instance
-                      .collection("Device Verification")
-                      .doc(androidId)
-                      .set({
-                         "Address": "",
-                         "Phone No": "",
-                         "Age": "",
-                         "FreeTextBox":""
-                    })
-            };
-      isStored = true;
-    } catch (e) {
-      isStored = false;
-    }
-    return isStored;
+    // bool deviceExits = await deviceDatabase.get().then((value) => value.exists);
+    // try {
+    //   databaseStatus
+    //       ? {}
+    //       : {
+    //           database.set({
+    //             "Address": "",
+    //             "Phone No": "",
+    //             "Age": "",
+    //             "FreeTextBox":""
+    //           }),
+    //           deviceExits
+    //               ? {}
+    //               : FirebaseFirestore.instance
+    //                   .collection("Device Verification")
+    //                   .doc(androidId)
+    //                   .set({
+    //                      "Address": "",
+    //                      "Phone No": "",
+    //                      "Age": "",
+    //                      "FreeTextBox":""
+    //                 })
+    //         };
+    //   isStored = true;
+    // } catch (e) {
+    //   isStored = false;
+    // }
+    return true;
   }
+
+   Future<bool> checkdata() async {
+
+    var database = _db
+        .collection("Users2")
+        .doc(firebaseauth.currentUser?.uid);
+    bool databaseStatus = await database.get().then((value) => value.exists);
+    return databaseStatus;
+  }
+
+deletedata() async {
+
+    await _db
+        .collection("Users2")
+        .doc(firebaseauth.currentUser?.uid).delete();
+  }
+
+  Future<dynamic> getalldata() async{
+    var data;
+    await _db
+        .collection("Users2")
+        .doc(firebaseauth.currentUser?.uid).get().then((doc) => {data = doc.data()});
+    return data;
+  }
+
+  storeFirebase(String address, String phone, String age, String gender){
+    var database = _db
+        .collection("Users2")
+        .doc(firebaseauth.currentUser?.uid);
+    database.set({
+                  "Address": address,
+                  "phone_no": phone,
+                  "Age": age,
+                  "gender":gender
+                });
+  }
+
 }

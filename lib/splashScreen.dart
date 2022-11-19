@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/auth_services.dart';
 import '../../main.dart';
 import 'HomePage.dart';
 
@@ -18,6 +19,7 @@ class SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     bool user;
+    bool data;
     user = FirebaseAuth.instance.currentUser == null;
     Timer(
         const Duration(seconds: 2),
