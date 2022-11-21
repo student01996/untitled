@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Positioned(
             left: 16,
             bottom: 368,
-            child: Text('Zolatte \nMumbai \nWorked with your dream',
+            child: Text('Haryana \nMumbai \nWorked with your dream',
                 style: headline4White),
           ),
           Positioned(
